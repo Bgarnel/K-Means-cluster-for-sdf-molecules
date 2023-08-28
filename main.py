@@ -109,3 +109,17 @@ with open(f'{target}-centroids.txt', 'w') as file:
         for molecule in molecules:
             file.write(f"{molecule}\n")
         file.write("\n")
+
+
+# CSV file for writing
+with open('cluster_info.csv', 'w', newline='') as csvfile:
+    csvwriter = csv.writer(csvfile)
+
+    # Write the header
+    csvwriter.writerow(['Molecule Name', 'Cluster Label', 'Is Centroid'])
+    z = 0
+    for i in centroid_molecule_association.keys():
+        z +=1
+        csvwriter.writerow([i, z, 'Yes'])
+        for mol in centroid_molecule_association[i]:
+            csvwriter.writerow([mol, z, 'No'])
