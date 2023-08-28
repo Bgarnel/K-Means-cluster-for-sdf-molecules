@@ -20,7 +20,7 @@ This Python script performs molecular fingerprint analysis using the RDKit libra
 
 3. Open the script and set the `target` variable to your target name and configure other parameters if needed.
 
-4. Run the script
+4. Run `main.py` script
 
 
 ## Usage
