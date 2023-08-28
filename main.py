@@ -47,12 +47,6 @@ pca_coords = pca.fit_transform(flat_fps)
 
 # Apply k-means clustering
 num_clusters = 20  # Number of clusters
-kmeans = KMeans(n_init=10, n_clusters=num_clusters)
-kmeans.fit(pca_coords)
-cluster_labels = kmeans.labels_
-
-# Apply k-means clustering
-num_clusters = 20  # Number of clusters
 kmeans = KMeans(n_init = 10, n_clusters=num_clusters)
 kmeans.fit(pca_coords)
 cluster_labels = kmeans.labels_
@@ -97,11 +91,8 @@ centroid_molecule_association = {target_data[target]['name_list'][i]: [] for i i
 
 # Populate the dictionary with molecule names
 for idx, cluster_id in enumerate(cluster_labels):
-    centroid_molecule_association[target_data[target]['name_list'][cluster_id]].append(target_data[target]['name_list'][idx])
-
-# Populate the dictionary with molecule names
-for idx, cluster_id in enumerate(cluster_labels):
-    centroid_molecule_association[target_data[target]['name_list'][cluster_id]].append(target_data[target]['name_list'][idx])
+    if idx > (num_clusters - 1):
+        centroid_molecule_association[target_data[target]['name_list'][cluster_id]].append(target_data[target]['name_list'][idx])
 
 # Write the centroid-molecule associations to a text file
 with open(f'{target}-centroids.txt', 'w') as file:
