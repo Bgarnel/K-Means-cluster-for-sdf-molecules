@@ -1,5 +1,6 @@
 import glob
 import os
+import csv
 import itertools
 from rdkit.Chem import AllChem
 from rdkit import Chem
@@ -112,7 +113,7 @@ with open(f'{target}-centroids.txt', 'w') as file:
 
 
 # CSV file for writing
-with open('cluster_info.csv', 'w', newline='') as csvfile:
+with open(f'{target}-cluster.csv', 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
 
     # Write the header
